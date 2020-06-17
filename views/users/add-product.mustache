@@ -1,8 +1,5 @@
-
-
 <html lang="en">
   <head>
-
     {{> header}}
 
     <title>Sell Your Stuff</title>
@@ -13,7 +10,6 @@
     <div class="container">
       {{> menu}}
 
-
       <form action="/users/upload" method="POST" enctype="multipart/form-data">
         <label>Photo</label>
         <input type="file" name="photo" />
@@ -22,33 +18,33 @@
 
       <img src="{{imageURL}}" class="{{className}}" />
 
-      <form action='/users/add-product' method='POST'>
+      <form action="/users/add-product" method="POST">
         <div class="form-group">
-    <label>Title</label>
-    <input type="text" name="title" class="form-control" placeholder="Enter title">
-  </div>
-    <div class="form-group">
-    <label>Description</label>
-    <textarea class="form-control" name="description"></textarea>
-    </div>
-    <div class="form-group">
-    <label>Price</label>
-    <input type="text" name="price" />
-  </div>
+          <label>Title</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            placeholder="Enter title"
+          />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" name="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" name="price" />
+        </div>
 
-  <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
       </form>
-
-
     </div>
 
     {{#message}}
-  <div class="alert alert-danger" role="alert">
-    {{message}}
-  </div>
-  {{/message}}
-
-
-    {{> footer}}
+    <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+    {{/message}} {{> footer}}
   </body>
 </html>
