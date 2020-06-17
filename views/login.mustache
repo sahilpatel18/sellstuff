@@ -10,7 +10,7 @@
     <div class="container">
       {{> menu}}
 
-      <form action='/login' method='POST'>
+      <form action="/login" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">User Name</label>
           <input
@@ -25,7 +25,7 @@
           <label for="exampleInputPassword1">Password</label>
           <input
             type="password"
-            name='password'
+            name="password"
             class="form-control"
             id="exampleInputPassword1"
           />
@@ -34,6 +34,11 @@
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
     </div>
-    {{> footer}}
+
+    {{#message}}
+    <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+    {{/message}} {{> footer}}
   </body>
 </html>
