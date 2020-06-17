@@ -26,6 +26,9 @@
             <p class="mb-1">{{description}}</p>
             <small class="text-success"><b>${{price}}</b></small>
 
+            <form action='/users/delete-product' method='POST'>
+                <input type='hidden' name="productId" value='{{}}'>
+            </form>
 
           {{/products}}
 
