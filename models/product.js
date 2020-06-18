@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Product.associate = function(models) {
-    // associations can be defined here
+   models.Product.hasMany(models.Comment, {as: 'comments', foreignKey: 'productId'})
   };
   return Product;
 };
