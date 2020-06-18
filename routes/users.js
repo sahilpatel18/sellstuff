@@ -11,41 +11,40 @@ router.get("/add-product", (req, res) => {
   });
 });
 
-router.post('/update-product', async (req,res) => {
-    const productId = req.body.productId
-    const title = req.body.title
-    const description = req.body.description
-    const price = parseFloat(req.body.price)
+router.post("/update-product", async (req, res) => {
+  const productId = req.body.productId;
+  const title = req.body.title;
+  const description = req.body.description;
+  const price = parseFloat(req.body.price);
 
-    const result = await models.Product.update({
-        title:title,
-        description: description,
-        price:price,
-        imageURL: uniqueFilename
-    },{
-        where: {
-            id: productId
-        }
-    })
+  const result = await models.Product.update(
+    {
+      title: title,
+      description: description,
+      price: price,
+      imageURL: uniqueFilename,
+    },
+    {
+      where: {
+        id: productId,
+      },
+    }
+  );
 
-    res.redirect('/users/products')
-})
+  res.redirect("/users/products");
+});
 
+router.post("/upload/edit/:productId", (req, res) => {
+  uploadFile(req, async (photoURL) => {
+    let productId = parseInt(req.params.productId);
+    let product = await models.Product.findByPk(productId);
 
-router.post('/upload/edit/:productId',(req,res) => {
+    let response = product.dataValues;
+    response.imageURL = photoURL;
 
-    uploadFile(req, async (photoURL) => {
-  
-      let productId = parseInt(req.params.productId)
-      let product = await models.Product.findByPk(productId)
-  
-      let response = product.dataValues
-      response.imageURL = photoURL
-  
-      res.render('users/edit',response)
-    })
-  
-  })
+    res.render("users/edit", response);
+  });
+});
 router.get("/products/:productId", async (req, res) => {
   let productId = req.params.productId;
   let product = await models.Product.findByPk(productId);
